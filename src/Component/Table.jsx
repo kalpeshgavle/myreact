@@ -3,30 +3,35 @@ import { WrapperContext } from "../App";
 
 
 function Table() {
-    const { tableData } = useContext(WrapperContext)
+    const { tableData, deleteValue, isEdit, dataEdit } = useContext(WrapperContext)
     return (
         <div className="container">
             <div className="my-2">
-                <table className="table">
-                    <thead className=" primary">
+                <table className="table ">
+                    <thead className="table-primary">
                         <tr>
                             <th>Sr No.</th>
                             <th>Fist Name</th>
                             <th>Last Name</th>
                             <th>City</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            tableData.map((item, id) => {
-                                const { firstName, lastName, city } = item;
+                            tableData.map((item, index) => {
+                                const { firstName, lastName, city, id } = item;
                                 return (
-                                    <tr>
-                                        <td>{id + 1}</td>
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
                                         <td>{firstName}</td>
                                         <td>{lastName}</td>
                                         <td>{city}</td>
+                                        <td> <button onClick={() => deleteValue(id)} className="btn btn-danger">Delete</button>
+                                            <button className="btn btn-warning mx-2 " onClick={() => dataEdit(item)}>Edit</button></td>
+
                                     </tr>
+
                                 )
                             })
 

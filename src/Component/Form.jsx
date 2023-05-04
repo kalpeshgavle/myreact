@@ -3,15 +3,27 @@ import { WrapperContext } from "../App";
 
 function Form() {
 
-    const { firstName, setFirstName, lastName, setLastName, city, setCity, tableData, setTableData } = useContext(WrapperContext)
+    const { firstName, setFirstName, lastName, setLastName, city, setCity, tableData, setTableData, isEdit, handleEdit } = useContext(WrapperContext)
 
 
     function addIteem(e) {
         e.preventDefault();
-        // console.log("done", { firstName, lastName, city });
-        const formValue = { firstName, lastName, city }
-        setTableData([...tableData, formValue])
+        if (firstName !== "" && lastName !== "" && city !== "") {
+            const date = new Date();
 
+            // console.log(tableData)
+            console.log("done", { firstName, lastName, city });
+            const formValue = { id: date.getTime(), firstName, lastName, city }
+            setTableData([...tableData, formValue])
+
+            setFirstName('')
+            setLastName('')
+
+            setCity('')
+        }
+        else {
+            alert('please enter some inputs ')
+        }
     }
     console.log(tableData)
     return (
@@ -28,8 +40,9 @@ function Form() {
                     <div className="col-8 my-2">
                         <input type="text" value={city} className="col-12 form-control" onChange={(e) => setCity(e.target.value)} placeholder="city" />
                     </div>
-                    <div className="col-8 my-2">
-                        <button onClick={addIteem} className="btn btn-primary col-12">Click to add</button>
+                    <div className="col-5 my-2">{
+                        isEdit ? <button onClick={handleEdit} className="btn btn-warning col-12">Edit</button> : <button onClick={addIteem} className="btn btn-primary col-12">Click to add</button>
+                    }
                     </div>
                 </div >
             </form>
