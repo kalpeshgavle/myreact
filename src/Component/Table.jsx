@@ -3,7 +3,7 @@ import { WrapperContext } from "../App";
 
 
 function Table() {
-    const { tableData, deleteValue, isEdit, dataEdit } = useContext(WrapperContext)
+    const { tableData, deleteValue, dataEdit } = useContext(WrapperContext)
     return (
         <div className="container">
             <div className="my-2">
@@ -29,7 +29,6 @@ function Table() {
                                         <td>{city}</td>
                                         <td> <button onClick={() => deleteValue(id)} className="btn btn-danger">Delete</button>
                                             <button className="btn btn-warning mx-2 " onClick={() => dataEdit(item)}>Edit</button></td>
-
                                     </tr>
 
                                 )
