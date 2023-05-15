@@ -1,13 +1,14 @@
-import { useSelector } from "react-redux";
+import Navbar from "./component/Navbar";
+import CounterPage from "./pages/CounterPage";
 
 function App() {
 
-  const { number, userName } = useSelector((state) => state.counter)
-  useSelector((state) => console.log(state))
+  // const { number, userName } = useSelector((state) => state.counter)
+  // useSelector((state) => console.log(state))
   return (
     <div className="container">
-      <h1>hello redux</h1>
-      <h2>{number}</h2>
+      <Navbar />
+      <CounterPage />
     </div>
   );
 }
